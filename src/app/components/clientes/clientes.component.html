@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="card text-dark bg-transparent  my-3">
+        <div class="card-header">Clientes</div>
+        <div class="card-body">
+            <h5 class="card-title">Listado de clientes</h5>
+            <div class="my-2 text-left">
+                <button class="btn btn-rounded btn-primary" [routerLink]="['/clientes/form']">Crear Cliente</button>
+            </div>
+            <div class="alert alert-info" *ngIf="clientes?.length==0">
+                No hay registros en la bbdd
+            </div>
+
+            <table class="table table-inverse" *ngIf="clientes?.length>0">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cliente of clientes">
+                        <th scope="row">{{cliente.id}}</th>
+                        <td>{{cliente.nombre}}</td>
+                        <td>{{cliente.apellido | uppercase}}</td>
+                        <td>{{cliente.createAt | date:'EEEE dd, MMMM yyyy'}}</td>
+                        <td>
+                            <button class="btn btn-success" name="button" [routerLink]="['/clientes/form/',cliente.id]"> Editar</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" name="button" (click)="deleteCliente(cliente.id)"> Borrar</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <app-paginator *ngIf="paginador" [paginador]="paginador"></app-paginator>
+        </div>
+    </div>
+</div>

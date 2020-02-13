@@ -1,0 +1,14 @@
+<div class="container">
+    <button type="button" (click)="ocultar()" class="btn btn-outline-dark my-3"> {{mostrar}}</button>
+    <div class="card my-4" *ngIf="oculto==false">
+        <div>
+            <div class="card-header font-bold">
+                Listado
+
+            </div>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor=" let item of listaCurso">{{item}}</li>
+        </ul>
+    </div>
+</div>
